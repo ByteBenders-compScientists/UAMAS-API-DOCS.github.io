@@ -14,6 +14,232 @@
     <section>
         <p>This section documents API endpoints that are accessible to lecturer users only.</p>
         <!-- Add lecturer routes documentation here -->
+        <div class="endpoint">
+            <h3>POST /auth/lecturer/courses</h3>
+            <p><strong>Description:</strong> Only lecturer can create a course.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+POST http://localhost:8080/api/v1/auth/lecturer/courses
+
+<strong>Request Body:</strong>
+{
+    "name": "Computer Science",
+    "code": "CS",
+    "department": "Computer Science",
+    "school": "Computer Science & Information Technology"
+}
+
+<strong>Response:</strong>
+{
+    "course_id": "dfb3f064-bf5a-4633-87ab-6495c28e30d1",
+    "message": "Course created successfully"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /auth/lecturer/courses</h3>
+            <p><strong>Description:</strong> Lecturer get all courses created by him/her.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/auth/lecturer/courses
+
+<strong>Response:</strong>
+[
+    {
+        "code": "CS",
+        "department": "Computer Science",
+        "id": "dfb3f064-bf5a-4633-87ab-6495c28e30d1",
+        "name": "Computer Science",
+        "school": "Computer Science & Information Technology",
+        "units": []
+    }
+]
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /auth/lecturer/courses/&lt;course_id&gt;</h3>
+            <p><strong>Description:</strong> Return details for specific course by ID.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/auth/lecturer/courses/&lt;course_id&gt;
+
+<strong>Response:</strong>
+{
+    "code": "CS",
+    "department": "Computer Science",
+    "id": "dfb3f064-bf5a-4633-87ab-6495c28e30d1",
+    "name": "Computer Science",
+    "school": "Computer Science & Information Technology",
+    "units": []
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>PUT /auth/lecturer/courses/&lt;course_id&gt;</h3>
+            <p><strong>Description:</strong> Update a course by ID (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+PUT http://localhost:8080/api/v1/auth/lecturer/courses/&lt;course_id&gt;
+
+<strong>Request Body:</strong>
+{
+    "code": "CS",
+    "department": "Computer Science",
+    "name": "Computer Science",
+    "school": "CS & IT"
+}
+
+<strong>Response:</strong>
+{
+    "code": "CS",
+    "department": "Computer Science",
+    "id": "dfb3f064-bf5a-4633-87ab-6495c28e30d1",
+    "name": "Computer Science",
+    "school": "CS & IT",
+    "units": []
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>DELETE /auth/lecturer/courses/&lt;course_id&gt;</h3>
+            <p><strong>Description:</strong> Delete a course by ID (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+DELETE http://localhost:8080/api/v1/auth/lecturer/courses/&lt;course_id&gt;
+
+<strong>Response:</strong>
+{
+    "message": "Course deleted successfully"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>POST /auth/lecturer/units</h3>
+            <p><strong>Description:</strong> Lecturer creating a unit in the course he/she created.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+POST http://localhost:8080/api/v1/auth/lecturer/units
+
+<strong>Request Body:</strong>
+{
+    "unit_code": "CCS 4102",
+    "unit_name": "Machine Learning",
+    "level": 4,
+    "semester": 1,
+    "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281"
+}
+
+<strong>Response:</strong>
+{
+    "message": "Unit created successfully",
+    "unit_id": "e1c4ffdb-c10b-43c7-acfa-8d09aad29ecd"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /auth/lecturer/units</h3>
+            <p><strong>Description:</strong> Get all units created by him or her (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/auth/lecturer/units
+
+<strong>Response:</strong>
+[
+    {
+        "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "id": "e1c4ffdb-c10b-43c7-acfa-8d09aad29ecd",
+        "level": 4,
+        "semester": 1,
+        "unit_code": "CCS 4102",
+        "unit_name": "Machine Learning"
+    },
+    {
+        "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "id": "36ee41ed-21b0-4311-a848-6608baea6553",
+        "level": 4,
+        "semester": 1,
+        "unit_code": "CCS 4101",
+        "unit_name": "Human Computer Interaction (HCI)"
+    },
+    {
+        "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "id": "7492ca17-2fe6-4d17-9ac2-5119124a3716",
+        "level": 4,
+        "semester": 1,
+        "unit_code": "CCS 4103",
+        "unit_name": "Computer Security"
+    }
+]
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /auth/lecturer/units/&lt;unit_id&gt;</h3>
+            <p><strong>Description:</strong> Get details for a specific unit by ID (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/auth/lecturer/units/&lt;unit_id&gt;
+
+<strong>Response:</strong>
+{
+    "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+    "id": "e1c4ffdb-c10b-43c7-acfa-8d09aad29ecd",
+    "level": 4,
+    "semester": 1,
+    "unit_code": "CCS 4102",
+    "unit_name": "Machine Learning"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>PUT /auth/lecturer/units/&lt;unit_id&gt;</h3>
+            <p><strong>Description:</strong> Update a unit by ID (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+PUT http://localhost:8080/api/v1/auth/lecturer/units/&lt;unit_id&gt;
+
+<strong>Request Body:</strong>
+{
+    "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+    "level": 4,
+    "semester": 2,
+    "unit_code": "CCS 4102",
+    "unit_name": "Machine learning"
+}
+
+<strong>Response:</strong>
+{
+    "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+    "id": "e1c4ffdb-c10b-43c7-acfa-8d09aad29ecd",
+    "level": 4,
+    "semester": 2,
+    "unit_code": "CCS 4102",
+    "unit_name": "Machine learning"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>DELETE /auth/lecturer/units/&lt;unit_id&gt;</h3>
+            <p><strong>Description:</strong> Delete a unit by ID (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+DELETE http://localhost:8080/api/v1/auth/lecturer/units/&lt;unit_id&gt;
+
+<strong>Response:</strong>
+{
+    "message": "Unit deleted successfully"
+}
+</pre>
+        </div>
     </section>
 </body>
 
