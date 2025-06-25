@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>UAMAS API Docs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>📘 UAMAS API GATEWAY</h1>
+    <nav>
+        <ul>
+            <li><a href="#base-url">Base URL</a></li>
+            <li><a href="#auth-service">Authentication Service</a></li>
+            <li><a href="#admin-service">Admin Routes</a></li>
+            <li><a href="#bd-service">Backend Service</a></li>
+        </ul>
+    </nav>
+    <p>Welcome to the UAMAS API documentation. This API serves as a gateway for various services including
+        authentication, admin management, and backend operations.</p>
+    <p>Version: <strong>1.0.0</strong></p>
+    <p>Last Updated: <strong>May 2025</strong></p>
+
+    <p>Author: <a href="https://github.com/ByteBenders-compScientists"> <strong>UAMAS Team</strong></a></p>
+    <hr>
+    <p>All endpoints are prefixed with <code>/api/v1</code>. Use the base URL below to access the API.</p>
+
+    <section class="base-url" id="base-url">
+        <h2>Base URL</h2>
+        <code>http://localhost:8080/api/v1</code>
+
+        <div class="endpoint">
+            <h3>GET /health</h3>
+            <p>Health check for the API gateway.</p>
+            <pre>Response:
+{
+  "message": "Api gateway is healthy"
+}</pre>
+        </div>
+
+        <hr>
+    <hr>
+    <p><strong>Note:</strong> All date/time fields are in UTC and ISO 8601 format. Include
+        <code>Authorization: Bearer &lt;token&gt;</code> for protected routes. Source code is available on <a
+            href="https://github.com/ByteBenders-compScientists/UAMAS-backend">GitHub</a>.
+    </p>
+    <p>For any issues or contributions, please open an issue or pull request on the GitHub repository.</p>
+    <footer>
+        <p>© 2025 UAMAS Team. All rights reserved.</p>
+    </footer>
+    <script>
+        // Add smooth scrolling to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

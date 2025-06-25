@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9fafb;
+    padding: 40px;
+    color: #111827;
+}
+
+h1,
+h2 {
+    color: #1f2937;
+}
+
+.endpoint {
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+pre {
+    background-color: #f9fafb;
+    border-left: 4px solid #3b82f6;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #3b82f6;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 20px 0;
+}
+
+.base-url,
+.auth-service,
+.admin-service,
+.bd-service {
+    margin-bottom: 40px;
+}
