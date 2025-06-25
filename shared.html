@@ -67,6 +67,60 @@ GET http://localhost:8080/api/v1/auth/logout
 }
 </pre>
         </div>
+        <div class="endpoint">
+            <h3>GET /auth/me</h3>
+            <p><strong>Description:</strong> Get current user profile (response below is for lecturer login).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/auth/me
+
+<strong>Response (Lecturer):</strong>
+{
+    "courses": [
+        {
+            "code": "CS",
+            "department": "Computer Science",
+            "id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+            "name": "Computer Science",
+            "school": "CS & IT",
+            "units": [
+                {
+                    "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+                    "id": "36ee41ed-21b0-4311-a848-6608baea6553",
+                    "level": 4,
+                    "semester": 1,
+                    "unit_code": "CCS 4101",
+                    "unit_name": "Human Computer Interaction (HCI)"
+                },
+                {
+                    "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+                    "id": "7492ca17-2fe6-4d17-9ac2-5119124a3716",
+                    "level": 4,
+                    "semester": 1,
+                    "unit_code": "CCS 4103",
+                    "unit_name": "Computer Security"
+                },
+                {
+                    "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+                    "id": "91827bb6-2be8-4b0a-9bc0-af472aacc375",
+                    "level": 4,
+                    "semester": 1,
+                    "unit_code": "CCS 4102",
+                    "unit_name": "Machine Learning"
+                }
+            ]
+        }
+    ],
+    "email": "w...@yahoo.com",
+    "id": "daa64de5-44d5-435a-a156-08637dccb58a",
+    "name": "George",
+    "othernames": "",
+    "role": "lecturer",
+    "surname": "Mutuku"
+}
+</pre>
+        </div>
     </section>
 </body>
 

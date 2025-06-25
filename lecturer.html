@@ -240,6 +240,166 @@ DELETE http://localhost:8080/api/v1/auth/lecturer/units/&lt;unit_id&gt;
 }
 </pre>
         </div>
+        <div class="endpoint">
+            <h3>POST /auth/lecturer/students</h3>
+            <p><strong>Description:</strong> Lecturer adds a student to a course he/she created.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+POST http://localhost:8080/api/v1/auth/lecturer/students
+
+<strong>Request Body:</strong>
+{
+    "email": "joe.doe2026@edu",
+    "reg_number": "C028-01-2010/2026",
+    "year_of_study": 4,
+    "semester": 1,
+    "firstname": "Joe",
+    "surname": "Doe",
+    "othernames": "",
+    "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281"
+}
+
+<strong>Response:</strong>
+{
+    "message": "Student added successfully",
+    "student_id": "a7c45883-1313-44af-b3c6-ac08da6707a4"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /auth/lecturer/students</h3>
+            <p><strong>Description:</strong> Get all students taking his/her courses (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/auth/lecturer/students
+
+<strong>Response:</strong>
+[
+    {
+        "course": {
+            "id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+            "name": "Computer Science"
+        },
+        "firstname": "Joe",
+        "id": "a7c45883-1313-44af-b3c6-ac08da6707a4",
+        "othernames": "",
+        "reg_number": "C028-01-2010/2026",
+        "semester": 1,
+        "surname": "Doe",
+        "units": [
+            {
+                "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+                "id": "36ee41ed-21b0-4311-a848-6608baea6553",
+                "level": 4,
+                "semester": 1,
+                "unit_code": "CCS 4101",
+                "unit_name": "Human Computer Interaction (HCI)"
+            },...
+        ],
+        "user_id": "079fdaf8-9316-464e-9884-c0801a94e9d1",
+        "year_of_study": 4
+    }
+]
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /auth/lecturer/students/&lt;student_id&gt;</h3>
+            <p><strong>Description:</strong> Get specific student detail (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/auth/lecturer/students/&lt;student_id&gt;
+
+<strong>Response:</strong>
+{
+    "course": {
+        "id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "name": "Computer Science"
+    },
+    "firstname": "Joe",
+    "id": "a7c45883-1313-44af-b3c6-ac08da6707a4",
+    "othernames": "",
+    "reg_number": "C028-01-2010/2026",
+    "semester": 1,
+    "surname": "Doe",
+    "units": [
+        {
+            "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+            "id": "36ee41ed-21b0-4311-a848-6608baea6553",
+            "level": 4,
+            "semester": 1,
+            "unit_code": "CCS 4101",
+            "unit_name": "Human Computer Interaction (HCI)"
+        },...
+    ],
+    "user_id": "079fdaf8-9316-464e-9884-c0801a94e9d1",
+    "year_of_study": 4
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>PUT /auth/lecturer/students/&lt;student_id&gt;</h3>
+            <p><strong>Description:</strong> Update a student's details (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+PUT http://localhost:8080/api/v1/auth/lecturer/students/&lt;student_id&gt;
+
+<strong>Request Body:</strong>
+{
+    "email": "joe.doe2025@edu",
+    "reg_number": "C029-01-2010/2025",
+    "year_of_study": 4,
+    "semester": 1,
+    "firstname": "Joe",
+    "surname": "Doe",
+    "othernames": "John",
+    "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281"
+}
+
+<strong>Response:</strong>
+{
+    "course": {
+        "id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "name": "Computer Science"
+    },
+    "firstname": "Joe",
+    "id": "a7c45883-1313-44af-b3c6-ac08da6707a4",
+    "othernames": "John",
+    "reg_number": "C029-01-2010/2025",
+    "semester": 1,
+    "surname": "Doe",
+    "units": [
+        {
+            "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+            "id": "36ee41ed-21b0-4311-a848-6608baea6553",
+            "level": 4,
+            "semester": 1,
+            "unit_code": "CCS 4101",
+            "unit_name": "Human Computer Interaction (HCI)"
+        },...
+    ],
+    "user_id": "079fdaf8-9316-464e-9884-c0801a94e9d1",
+    "year_of_study": 4
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>DELETE /auth/lecturer/students/&lt;student_id&gt;</h3>
+            <p><strong>Description:</strong> Delete a student by ID (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+DELETE http://localhost:8080/api/v1/auth/lecturer/students/&lt;student_id&gt;
+
+<strong>Response:</strong>
+{
+    "message": "Student deleted successfully"
+}
+</pre>
+        </div>
     </section>
 </body>
 
