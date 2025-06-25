@@ -13,7 +13,6 @@
     <h1>Shared API Routes</h1>
     <section>
         <p>This section documents API endpoints that are accessible to all authenticated users or are public.</p>
-        <!-- Add shared routes documentation here -->
         <div class="endpoint">
             <h3>POST /auth/login</h3>
             <p><strong>Description:</strong> Route for all user login.</p>
@@ -22,8 +21,8 @@ POST http://localhost:8080/api/v1/auth/login
 
 <strong>Request Body:</strong>
 {
-    "email": "esphere@yahoo.com",
-    "password": "esphere@2025"
+    "email": "e...@yahoo.com",
+    "password": "e...@2025"
 }
 
 <strong>Response:</strong>
@@ -44,13 +43,27 @@ POST http://localhost:8080/api/v1/auth/reset-password
 
 <strong>Request Body:</strong>
 {
-    "email": "esphere@yahoo.com",
-    "new_password": "esphere@2025?"
+    "email": "e...@yahoo.com",
+    "new_password": "e...@2025?"
 }
 
 <strong>Response:</strong>
 {
     "message": "Password reset successfully. Check your email."
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /auth/logout</h3>
+            <p><strong>Description:</strong> Logout route for all users.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/auth/logout
+
+<strong>Response:</strong>
+{
+    "message": "Successfully logged out"
 }
 </pre>
         </div>

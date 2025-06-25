@@ -14,6 +14,36 @@
     <section>
         <p>This section documents API endpoints that are accessible to admin users only.</p>
         <!-- Add admin routes documentation here -->
+        <div class="endpoint">
+            <h3>POST /admin/lecturers</h3>
+            <p><strong>Description:</strong> Create a new lecturer (admin only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+POST http://localhost:8080/api/v1/admin/lecturers
+
+<strong>Request Body:</strong>
+{
+    "email": "walter...@gmail.com",
+    "firstname": "George",
+    "surname": "Mutuku",
+    "othernames": ""
+}
+
+<strong>Response:</strong>
+{
+    "lecturer": {
+        "firstname": "George",
+        "id": "25b4af02-f058-4aa1-a4b0-30385fa9d685",
+        "othernames": "",
+        "surname": "Mutuku",
+        "units": [],
+        "user_id": "7fac80d7-2de0-4924-8368-33ce5704d015"
+    },
+    "temp_password": "ldMZIax1" # send to the lecturer email used to create account
+}
+</pre>
+        </div>
     </section>
 </body>
 
