@@ -44,6 +44,67 @@ POST http://localhost:8080/api/v1/admin/lecturers
 }
 </pre>
         </div>
+        <div class="endpoint">
+            <h3>GET /admin/lecturers</h3>
+            <p><strong>Description:</strong> Get all lecturers registered (admin only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/admin/lecturers
+
+<strong>Response:</strong>
+[
+    {
+        "courses": [],
+        "firstname": "George",
+        "id": "4682aa94-6872-4dda-adcc-a377bef0eab7",
+        "othernames": "",
+        "surname": "Mutuku",
+        "user_id": "172a0f76-45bb-424c-b15f-e50f3373d2b3"
+    }
+]
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>PUT /admin/lecturers/&lt;lecturer_id&gt;</h3>
+            <p><strong>Description:</strong> Update a lecturer's profile (admin only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+PUT http://localhost:8080/api/v1/admin/lecturers/&lt;lecturer_id&gt;
+
+<strong>Request Body:</strong>
+{
+    "firstname": "George",
+    "othernames": "James",
+    "surname": "Mutuku"
+}
+
+<strong>Response:</strong>
+{
+    "courses": [],
+    "firstname": "George",
+    "id": "4682aa94-6872-4dda-adcc-a377bef0eab7",
+    "othernames": "James",
+    "surname": "Mutuku",
+    "user_id": "172a0f76-45bb-424c-b15f-e50f3373d2b3"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>DELETE /admin/lecturers/&lt;lecturer_id&gt;</h3>
+            <p><strong>Description:</strong> Delete a lecturer (admin only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+DELETE http://localhost:8080/api/v1/admin/lecturers/&lt;lecturer_id&gt;
+
+<strong>Response:</strong>
+{
+    "message": "Deleted"
+}
+</pre>
+        </div>
     </section>
 </body>
 
