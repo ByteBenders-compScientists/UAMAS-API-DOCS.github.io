@@ -400,6 +400,225 @@ DELETE http://localhost:8080/api/v1/auth/lecturer/students/&lt;student_id&gt;
 }
 </pre>
         </div>
+        <hr>
+        <h2>Assessment Management Routes</h2>
+        <hr>
+        <div class="endpoint">
+            <h3>POST /bd/lecturer/ai/generate-assessments</h3>
+            <p><strong>Description:</strong> Generate assessment using AI (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+POST http://localhost:8080/api/v1/bd/lecturer/ai/generate-assessments
+
+<strong>Request Body:</strong>
+{
+    "title": "Machine Learning",
+    "description": "Add question on deep learning/neural network",
+    "week": 3,
+    "type": "CAT",                                                   // CAT, Assignment, Case Study
+    "unit_id": "91827bb6-2be8-4b0a-9bc0-af472aacc375",
+    "questions_type": "close-ended",                                // close-ended, open-ended
+    "close_ended_type": "multiple choice with one answer",          // matching, multiple choice with one answer, multiple choice with multiple answers, true/false
+    "topic": "Deep Learning",
+    "total_marks": "20",
+    "difficulty": "Intermediate",                                   // Easy, Intermediate, Advance
+    "number_of_questions": "10",
+    "blooms_level": "Remember",                                     // Remember, Understand, Apply, Analyze, Evaluate, Create
+    "deadline": "2025-10-01T12:00:00Z",                             // optional field
+    "duration": 30                                                 // in minutes (optional field)
+}
+
+<strong>Response:</strong>
+{
+    "assessment_id": "56e00466-48c9-4504-8e60-d78e3358d8ba",
+    "message": "Assessment generated successfully.",
+    "title": "Machine Learning"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /bd/lecturer/assessments/&lt;assessment_id&gt;/verify</h3>
+            <p><strong>Description:</strong> Used to verify AI generated assessment (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/lecturer/assessments/&lt;assessment_id&gt;/verify
+
+<strong>Response:</strong>
+{
+    "assessment_id": "56e00466-48c9-4504-8e60-d78e3358d8ba",
+    "message": "Assessment verified successfully.",
+    "title": "Machine Learning"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>POST /bd/lecturer/generate-assessments</h3>
+            <p><strong>Description:</strong> Lecturer creating assessments manually.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+POST http://localhost:8080/api/v1/bd/lecturer/generate-assessments
+
+<strong>Request Body:</strong>
+{
+    "title": "Computer Security",
+    "description": "Assignment on cryptography",
+    "week": 3,
+    "type": "Assignment",                                   // CAT, Assignment, Case Study
+    "unit_id": "7492ca17-2fe6-4d17-9ac2-5119124a3716",
+    "questions_type": "open-ended",                         // close-ended, open-ended
+    "close_ended_type": "",                                 // matching, multiple choice with one answer, multiple choice with multiple answers, true/false
+    "topic": "Cryptography",
+    "total_marks": 3,
+    "difficulty": "Intermediate",                           // Easy, Intermediate, Advance
+    "number_of_questions": 1,
+    "blooms_level": "Remember",                             // Remember, Understand, Apply, Analyze, Evaluate, Create
+    "deadline": "",                                         // optional field
+    "duration": ""                                          // in minutes (optional field)
+}
+
+<strong>Response:</strong>
+{
+    "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+    "message": "Assessment created successfully.",
+    "title": "Computer Security"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>DELETE /bd/lecturer/assessments/&lt;assessment_id&gt;</h3>
+            <p><strong>Description:</strong> Delete an assessment by ID (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+DELETE http://localhost:8080/api/v1/bd/lecturer/assessments/&lt;assessment_id&gt;
+
+<strong>Response:</strong>
+{
+    "message": "Assessment deleted successfully."
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>POST /bd/lecturer/assessments/&lt;assessment_id&gt;/questions</h3>
+            <p><strong>Description:</strong> Add a question to an assessment (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+POST http://localhost:8080/api/v1/bd/lecturer/assessments/&lt;assessment_id&gt;/questions
+
+<strong>Request Body:</strong>
+{
+    "text": "Challenge of key exchange, possible solutions",
+    "marks": 3,
+    "type": "open-ended", // should match the parent assessment type
+    "rubric": "Award full marks for correct year; partial for close guesses",
+    "correct_answer": "",
+    "choices": ""
+}
+
+<strong>Response:</strong>
+{
+    "message": "Question added successfully.",
+    "question_id": "b0136541-5f9b-4ed7-9c68-1ed1e663cbe1"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /bd/lecturer/assessments</h3>
+            <p><strong>Description:</strong> Get all assessments created by the lecturer.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/lecturer/assessments
+
+<strong>Response:</strong>
+[
+    {
+        "blooms_level": "Remember",
+        "close_ended_type": "multiple choice with one answer",
+        "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "created_at": "2025-06-26T13:29:07.578776",
+        "creator_id": "daa64de5-44d5-435a-a156-08637dccb58a",
+        "deadline": "2025-10-01T12:00:00",
+        "description": "Add question on deep learning/neural network",
+        "difficulty": "Intermediate",
+        "duration": 30,
+        "id": "56e00466-48c9-4504-8e60-d78e3358d8ba",
+        "level": 4,
+        "number_of_questions": 10,
+        "questions": [
+            {
+                "assessment_id": "56e00466-48c9-4504-8e60-d78e3358d8ba",
+                "choices": [
+                    "They require manual extraction of features",
+                    "They automatically learn feature representations from data",
+                    "They are not suitable for unstructured data"
+                ],
+                "correct_answer": [
+                    "They automatically learn feature representations from data"
+                ],
+                "created_at": "2025-06-26T13:29:07.586199",
+                "id": "b84f00d3-b020-44a7-bf00-6e066756640e",
+                "marks": 2.0,
+                "rubric": "Award full marks if the correct choice is selected; otherwise, award zero.",
+                "text": "Which of the following is a key characteristic of deep learning models?",
+                "type": "close-ended"
+            },...
+        ],
+        "questions_type": "close-ended",
+        "semester": 1,
+        "status": "start",
+        "title": "Machine Learning",
+        "topic": "Deep Learning",
+        "total_marks": 20,
+        "type": "CAT",
+        "unit_id": "91827bb6-2be8-4b0a-9bc0-af472aacc375",
+        "verified": true,
+        "week": 3
+    },
+    {
+        "blooms_level": "Remember",
+        "close_ended_type": null,
+        "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "created_at": "2025-06-26T13:58:03.625859",
+        "creator_id": "daa64de5-44d5-435a-a156-08637dccb58a",
+        "deadline": null,
+        "description": "Assignment on cryptography",
+        "difficulty": "Intermediate",
+        "duration": null,
+        "id": "e49d387f-7128-42c3-939e-0175847733ab",
+        "level": 4,
+        "number_of_questions": 1,
+        "questions": [
+            {
+                "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+                "choices": null,
+                "correct_answer": null,
+                "created_at": "2025-06-26T14:21:50.422085",
+                "id": "b0136541-5f9b-4ed7-9c68-1ed1e663cbe1",
+                "marks": 3.0,
+                "rubric": "Award full marks for correct year; partial for close guesses",
+                "text": "Challenge of key exchange, possible solutions",
+                "type": "open-ended"
+            }
+        ],
+        "questions_type": "open-ended",
+        "semester": 1,
+        "status": "start",
+        "title": "Computer Security",
+        "topic": "Cryptography",
+        "total_marks": 3,
+        "type": "Assignment",
+        "unit_id": "7492ca17-2fe6-4d17-9ac2-5119124a3716",
+        "verified": false,
+        "week": 3
+    }
+]
+</pre>
+        </div>
     </section>
 </body>
 
