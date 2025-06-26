@@ -619,6 +619,79 @@ GET http://localhost:8080/api/v1/bd/lecturer/assessments
 ]
 </pre>
         </div>
+        <div class="endpoint">
+            <h3>POST /bd/lecturer/units/&lt;unit_id&gt;/notes</h3>
+            <p><strong>Description:</strong> Upload learning materials (notes) to a unit (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.<br>
+                <strong>Request Body (form-data):</strong> <br>
+                - <code>file</code> (required): The file to upload<br>
+                - <code>title</code> (required): Title of the notes<br>
+                - <code>description</code> (optional): Description of the notes
+            </p>
+            <pre><strong>Request:</strong>
+POST http://localhost:8080/api/v1/bd/lecturer/units/&lt;unit_id&gt;/notes
+
+<strong>Response:</strong>
+{
+    "file_info": {
+        "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "created_at": "2025-06-26T15:06:30.974635",
+        "file_size": 17460,
+        "file_type": "docx",
+        "filename": "machine_learning_outline.docx",
+        "title": "course outline",
+        "unit_id": "91827bb6-2be8-4b0a-9bc0-af472aacc375"
+    },
+    "message": "Notes uploaded successfully.",
+    "note_id": "33b77145-0716-4b9d-9c89-0639b1a3cfc8"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>DELETE /bd/lecturer/notes/&lt;note_id&gt;</h3>
+            <p><strong>Description:</strong> Delete a note by ID (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+DELETE http://localhost:8080/api/v1/bd/lecturer/notes/&lt;note_id&gt;
+
+<strong>Response:</strong>
+{
+    "message": "Note deleted successfully.",
+    "note_id": "f338ba1c-5c22-4caf-81e6-f0a436f6ba0a"
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /bd/lecturer/notes</h3>
+            <p><strong>Description:</strong> Get all notes uploaded by the lecturer.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/lecturer/notes
+
+<strong>Response:</strong>
+{
+    "message": "Lecturer notes retrieved successfully.",
+    "notes": [
+        {
+            "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+            "created_at": "2025-06-26T15:06:30.974635",
+            "description": "",
+            "file_size": 17460,
+            "file_type": "docx",
+            "id": "33b77145-0716-4b9d-9c89-0639b1a3cfc8",
+            "lecturer_id": "daa64de5-44d5-435a-a156-08637dccb58a",
+            "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "original_filename": "machine_learning_outline.docx",
+            "title": "course outline",
+            "unit_id": "91827bb6-2be8-4b0a-9bc0-af472aacc375",
+            "updated_at": "2025-06-26T15:06:30.974643"
+        }
+    ]
+}
+</pre>
+        </div>
     </section>
 </body>
 

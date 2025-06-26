@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lecturer and Student Shared API Routes - UAMAS API Docs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <nav><a href="index.html">← Back to Main Docs</a></nav>
+    <h1>Lecturer and Student Shared API Routes</h1>
+    <section>
+        <p>This section documents API endpoints that are accessible to both lecturer and student users.</p>
+        <div class="endpoint">
+            <h3>GET /bd/assessments/&lt;assessment_id&gt;/questions</h3>
+            <p><strong>Description:</strong> Get all questions for a specific assessment (lecturer and student).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/assessments/&lt;assessment_id&gt;/questions
+
+<strong>Response:</strong>
+[
+    {
+        "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+        "choices": null,
+        "correct_answer": null,
+        "created_at": "2025-06-26T14:21:50.422085",
+        "id": "b0136541-5f9b-4ed7-9c68-1ed1e663cbe1",
+        "marks": 3.0,
+        "rubric": "Award full marks for correct year; partial for close guesses",
+        "text": "Challenge of key exchange, possible solutions",
+        "type": "open-ended"
+    }
+]
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /bd/notes/&lt;note_id&gt;/download</h3>
+            <p><strong>Description:</strong> Download note materials (lecturer and student).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/notes/&lt;note_id&gt;/download
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /bd/units/&lt;unit_id&gt;/notes</h3>
+            <p><strong>Description:</strong> Retrieve note materials in a specific unit (lecturer and student).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/units/&lt;unit_id&gt;/notes
+
+<strong>Response:</strong>
+{
+    "course": {
+        "code": "CS",
+        "id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "name": "Computer Science"
+    },
+    "message": "Notes retrieved successfully.",
+    "notes": [
+        {
+            "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+            "created_at": "2025-06-26T15:06:30.974635",
+            "description": "",
+            "file_size": 17460,
+            "file_type": "docx",
+            "id": "33b77145-0716-4b9d-9c89-0639b1a3cfc8",
+            "lecturer_id": "daa64de5-44d5-435a-a156-08637dccb58a",
+            "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "original_filename": "machine_learning_outline.docx",
+            "title": "course outline",
+            "unit_id": "91827bb6-2be8-4b0a-9bc0-af472aacc375",
+            "updated_at": "2025-06-26T15:06:30.974643"
+        }
+    ],
+    "unit": {
+        "code": "CCS 4102",
+        "id": "91827bb6-2be8-4b0a-9bc0-af472aacc375",
+        "name": "Machine Learning"
+    }
+}
+</pre>
+        </div>
+        <!-- Add student routes documentation here -->
+    </section>
+</body>
+
+</html>
