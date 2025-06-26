@@ -13,7 +13,128 @@
     <h1>Student API Routes</h1>
     <section>
         <p>This section documents API endpoints that are accessible to student users only.</p>
-        <!-- Add student routes documentation here -->
+        <div class="endpoint">
+            <h3>GET /bd/student/assessments</h3>
+            <p><strong>Description:</strong> Get all verified assessments for the student in their courses.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/student/assessments
+
+<strong>Response:</strong>
+[
+    {
+        "blooms_level": "Remember",
+        "close_ended_type": null,
+        "course_id": "7d1360db-d1f3-40c1-9f05-6ab64d60f281",
+        "created_at": "2025-06-26T13:58:03.625859",
+        "creator_id": "daa64de5-44d5-435a-a156-08637dccb58a",
+        "deadline": null,
+        "description": "Assignment on cryptography",
+        "difficulty": "Intermediate",
+        "duration": null,
+        "id": "e49d387f-7128-42c3-939e-0175847733ab",
+        "level": 4,
+        "number_of_questions": 1,
+        "questions": [
+            {
+                "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+                "choices": null,
+                "correct_answer": null,
+                "created_at": "2025-06-26T14:21:50.422085",
+                "id": "b0136541-5f9b-4ed7-9c68-1ed1e663cbe1",
+                "marks": 3.0,
+                "rubric": "Award full marks for correct year; partial for close guesses",
+                "text": "Challenge of key exchange, possible solutions",
+                "type": "open-ended"
+            }
+        ],
+        "questions_type": "open-ended",
+        "semester": 1,
+        "status": "start",
+        "title": "Computer Security",
+        "topic": "Cryptography",
+        "total_marks": 3,
+        "type": "Assignment",
+        "unit_id": "7492ca17-2fe6-4d17-9ac2-5119124a3716",
+        "verified": true,
+        "week": 3
+    },...
+]
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>POST /bd/student/questions/&lt;question_id&gt;/answer</h3>
+            <p><strong>Description:</strong> Submit an answer to a question (student only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.<br>
+                <strong>Request Body (form-data):</strong><br>
+                - <code>answer_type</code> (required): Must be either <code>text</code> or <code>image</code><br>
+                - If <code>answer_type</code> is <code>text</code>: <code>text_answer</code> (required, string)<br>
+                - If <code>answer_type</code> is <code>image</code>: <code>image</code> (required, file)
+            </p>
+            <pre><strong>Request:</strong>
+POST http://localhost:8080/api/v1/bd/student/questions/&lt;question_id&gt;/answer
+
+<strong>Response:</strong>
+{
+    "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+    "feedback": "The answer correctly identifies the challenge of securely exchanging cryptographic keys over an insecure channel and provides valid solutions, including Diffie-Hellman key exchange and public-key cryptography like RSA. This matches the requirements of the question, and full marks are awarded.",
+    "message": "Answer submitted successfully.",
+    "question_id": "b0136541-5f9b-4ed7-9c68-1ed1e663cbe1",
+    "score": 3.0
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /bd/student/assessments/&lt;assessment_id&gt;/submit</h3>
+            <p><strong>Description:</strong> Submit an assessment (student only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/student/assessments/&lt;assessment_id&gt;/submit
+
+<strong>Response:</strong>
+{
+    "message": "Assessment submitted successfully.",
+    "submission_id": "27eb3975-1ab8-44b6-a75b-3ecf85db1e40",
+    "total_marks": 3.0
+}
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /bd/student/submissions</h3>
+            <p><strong>Description:</strong> Get all submissions made by the student.<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/student/submissions
+
+<strong>Response:</strong>
+[
+    {
+        "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+        "graded": true,
+        "results": [
+            {
+                "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+                "correct_answer": null,
+                "feedback": "The answer correctly identifies the challenge of securely exchanging cryptographic keys over an insecure channel and provides accurate solutions, including Diffie-Hellman key exchange and public-key cryptography (e.g., RSA). This matches the requirements of the question and aligns with the rubric, earning full marks.",
+                "graded_at": "2025-06-26T17:59:53.467598",
+                "id": "829d66cb-ab2a-4359-8b1d-0c15f83ffa01",
+                "marks": 3.0,
+                "question_id": "b0136541-5f9b-4ed7-9c68-1ed1e663cbe1",
+                "question_text": "Challenge of key exchange, possible solutions",
+                "rubric": "Award full marks for correct year; partial for close guesses",
+                "score": 3.0,
+                "student_id": "373ca408-11a5-4076-9844-93d03fff2e62"
+            },...
+        ],
+        "submission_id": "27eb3975-1ab8-44b6-a75b-3ecf85db1e40",
+        "total_marks": 3.0
+    }
+]
+</pre>
+        </div>
     </section>
 </body>
 

@@ -692,6 +692,96 @@ GET http://localhost:8080/api/v1/bd/lecturer/notes
 }
 </pre>
         </div>
+        <div class="endpoint">
+            <h3>GET /bd/lecturer/submissions/assessments/&lt;assessment_id&gt;</h3>
+            <p><strong>Description:</strong> Get all submissions for a specific assessment (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/lecturer/submissions/assessments/&lt;assessment_id&gt;
+
+<strong>Response:</strong>
+[
+    {
+        "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+        "graded": true,
+        "results": [
+            {
+                "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+                "feedback": "The answer correctly identifies the challenge of securely exchanging cryptographic keys over an insecure channel and provides accurate solutions, including Diffie-Hellman key exchange and public-key cryptography (e.g., RSA). This matches the requirements of the question and aligns with the rubric, earning full marks.",
+                "graded_at": "2025-06-26T17:59:53.467598",
+                "id": "829d66cb-ab2a-4359-8b1d-0c15f83ffa01",
+                "marks": 3.0,
+                "question_id": "b0136541-5f9b-4ed7-9c68-1ed1e663cbe1",
+                "question_text": "Challenge of key exchange, possible solutions",
+                "score": 3.0,
+                "student_id": "373ca408-11a5-4076-9844-93d03fff2e62"
+            }
+        ],
+        "student_id": "373ca408-11a5-4076-9844-93d03fff2e62",
+        "submission_id": "27eb3975-1ab8-44b6-a75b-3ecf85db1e40",
+        "total_marks": 3.0
+    }
+]
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>GET /bd/lecturer/submissions/student/&lt;student_id&gt;</h3>
+            <p><strong>Description:</strong> Get all submissions for a specific student (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+GET http://localhost:8080/api/v1/bd/lecturer/submissions/student/&lt;student_id&gt;
+
+<strong>Response:</strong>
+[
+    {
+        "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+        "graded": true,
+        "results": [
+            {
+                "assessment_id": "e49d387f-7128-42c3-939e-0175847733ab",
+                "feedback": "The answer correctly identifies the challenge of securely exchanging cryptographic keys over an insecure channel and provides accurate solutions, including Diffie-Hellman key exchange and public-key cryptography (e.g., RSA). This matches the requirements of the question and aligns with the rubric, earning full marks.",
+                "graded_at": "2025-06-26T17:59:53.467598",
+                "id": "829d66cb-ab2a-4359-8b1d-0c15f83ffa01",
+                "marks": 3.0,
+                "question_id": "b0136541-5f9b-4ed7-9c68-1ed1e663cbe1",
+                "question_text": "Challenge of key exchange, possible solutions",
+                "score": 3.0,
+                "student_id": "373ca408-11a5-4076-9844-93d03fff2e62"
+            }
+        ],
+        "student_id": "373ca408-11a5-4076-9844-93d03fff2e62",
+        "submission_id": "27eb3975-1ab8-44b6-a75b-3ecf85db1e40",
+        "total_marks": 3.0
+    }
+]
+</pre>
+        </div>
+        <div class="endpoint">
+            <h3>PUT /bd/lecturer/submissions/&lt;submission_id&gt;</h3>
+            <p><strong>Description:</strong> Update score and feedback for a student submission (lecturer only).<br>
+                <strong>Note:</strong> You must include <code>credentials: include</code> when sending the request.
+            </p>
+            <pre><strong>Request:</strong>
+PUT http://localhost:8080/api/v1/bd/lecturer/submissions/&lt;submission_id&gt;
+
+<strong>Request Body:</strong>
+{
+    "score": 2.5,
+    "question_id": "b0136541-5f9b-4ed7-9c68-1ed1e663cbe1",
+    "feedback": "The answer correctly identifies the challenge of securely exchanging cryptographic keys over an insecure channel and provides accurate solutions, including Diffie-Hellman key exchange and public-key cryptography (e.g., RSA). This matches the requirements of the question and aligns with the rubric, earning full marks."
+}
+
+<strong>Response:</strong>
+{
+    "graded": true,
+    "message": "Submission updated successfully.",
+    "submission_id": "27eb3975-1ab8-44b6-a75b-3ecf85db1e40",
+    "total_marks": 2.5
+}
+</pre>
+        </div>
     </section>
 </body>
 
